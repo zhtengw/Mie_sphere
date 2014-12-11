@@ -1,9 +1,9 @@
-	subroutine Mie_eff(nlayer, r0)
+	program Mie_eff
 c ...................................................................................
 c ...................................................................................
 	implicit none
-	integer, intent(in):: nlayer	!球壳的层数，只能在调用Mie_eff时
-					!读入，在执行Mie_eff过程中不可改变
+	integer, parameter :: nlayer=3	!球壳的层数
+
 	integer kstep,kn
 	double precision Lambda,kstart,kint,Qext,Qscat,Qabs
 	double precision r0(nlayer)		!各层球壳的外径
@@ -14,15 +14,14 @@ c ..............................................................................
 	real*4 :: executetime(2),clocktime,etime
 
 	Cw=8.0655D5	
-	!r0(1)=5.5d-9				!redius of CdSe core, m
-	!r0(2)=7.5d-9				!radius of silica shell, m
-	!r0(3)=10.0d-9				!radius of nanoparticle, m
-      	print*,r0
+	r0(1)=5.5d-9				!redius of CdSe core, m
+	r0(2)=7.5d-9				!radius of silica shell, m
+	r0(3)=10.0d-9				!radius of nanoparticle, m
 	kstart=2.00d-7				!初始波长200nm
 	kint=1.0d-9				!步长1nm
 	kstep=601				!扫601个波长，即算到800nm
 
-	open(20,file='Mie_sphere.csv')
+	open(20,file='Mie_eff.csv')
 	write(20,*) 'wavelength,Qext,Qscat,Qabs,'
 
 	do kn=1,kstep
@@ -54,7 +53,9 @@ c .........................................................................
 100	format(ES12.5,',',ES12.5,','ES12.5,','ES12.5,',')
 	end do
 
-	return
+	clocktime=etime(executetime)
+	write(*,*) executetime(1)
+	stop
 	end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 

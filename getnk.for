@@ -1,18 +1,22 @@
       subroutine getnk(PE,nk)
 	implicit none
-	integer i
-	double precision :: nn(37),kk(37),PEI(37)
+	integer :: i,lines
+	double precision, allocatable :: nn(:),kk(:),PEI(:)
 	double precision PE,nninterp,kkinterp
 	complex*16 nk
-      
+	
+        call getfilelines('nk.txt', lines)
+        allocate(nn(lines))
+        allocate(kk(lines))
+        allocate(PEI(lines))
 	open(50,file='nk.txt',status='old')
-	do i=1,37
+	do i=1,lines
 	read(50,*) PEI(i),nn(i),kk(i)
 	end do
 	close(50)
-
-	CALL PCHIP(37,PEI,nn,1,PE,nninterp)
-      CALL PCHIP(37,PEI,kk,1,PE,kkinterp)
+c	DPCHIM(N, X, F, D, 1, IERR) 要求数组X必须是从小到大排列的，所以数据nk.txt必须是从低频到高频排序
+	CALL PCHIP(lines,PEI,nn,1,PE,nninterp)
+	CALL PCHIP(lines,PEI,kk,1,PE,kkinterp)
 	nk=cmplx(nninterp,kkinterp)
 	return
 	end
