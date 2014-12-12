@@ -6,7 +6,16 @@ DIR_BIN = ${DIR_BUILD}/
 SRC = $(wildcard ${DIR_SRC}/*.for)  
 OBJ = $(patsubst %.for,${DIR_OBJ}/%.o,$(notdir ${SRC})) 
 
-TARGET = Mie_sphere
+KERNEL = $(shell uname)
+
+ifeq (${KERNEL},Linux)
+OS = linux
+endif
+ifeq (${KERNEL},Darwin)
+OS = Mac
+endif
+
+TARGET = Mie_sphere_${OS}
 
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
