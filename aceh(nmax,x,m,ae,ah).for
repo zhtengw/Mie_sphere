@@ -1,7 +1,7 @@
       subroutine aceh(nlayer,nmax,x,m,an,bn)
 	integer nlayer,n,nmax,nk
       double precision x(nlayer)
-      complex*16 m(nlayer+1),xi,xo,cc          ! mÎªÕÛÉäÂÊ
+      complex*16 m(nlayer+1),xi,xo,cc          ! mä¸ºæŠ˜å°„ç‡
 	complex*16 jnx(-1:nmax),ynx(-1:nmax),jnz(-1:nmax),ynz(-1:nmax)
 	complex*16 hnx(-1:nmax),hnz(-1:nmax)
 	complex*16 tns(1:nmax),dns(1:nmax),tns1,dns1
@@ -16,7 +16,7 @@
 
 	   xi=x(nk)*m(nk)
 	   xo=x(nk)*m(nk+1)
-	   n=nmax !besselº¯Êıµ÷ÓÃ¹æ·¶£¬µÚÒ»¸ö²ÎÊı±ØĞëÓÃ±äÁ¿
+	   n=nmax !besselå‡½æ•°è°ƒç”¨è§„èŒƒï¼Œç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»ç”¨å˜é‡
 	   call c_bessel(n,nmax,jnx,xi)
 	   n=nmax
 	   call c_newman(n,nmax,ynx,xi)
@@ -31,12 +31,12 @@
 	      hnz(n)=jnz(n)+cc*ynz(n)
 	   end do
 	   do n=1,nmax,1
-	      djnx=xi*jnx(n-1)-n*jnx(n)               ! d±íÊ¾¶Ô(xi*jnxi)Çóµ¼
-	      dynx=xi*ynx(n-1)-n*ynx(n)               ! d±íÊ¾¶Ô(xi*ynxi)Çóµ¼
-            dhnx=xi*hnx(n-1)-n*hnx(n)               ! d±íÊ¾¶Ô(xi*hnxi)Çóµ¼
-	      djnz=xo*jnz(n-1)-n*jnz(n)               ! d±íÊ¾¶Ô(xo*jnxo)Çóµ¼
-	      dynz=xo*ynz(n-1)-n*ynz(n)               ! d±íÊ¾¶Ô(xo*ynxo)Çóµ¼
-            dhnz=xo*hnz(n-1)-n*hnz(n)               ! d±íÊ¾¶Ô(xo*hnxo)Çóµ¼
+	      djnx=xi*jnx(n-1)-n*jnx(n)               ! dè¡¨ç¤ºå¯¹(xi*jnxi)æ±‚å¯¼
+	      dynx=xi*ynx(n-1)-n*ynx(n)               ! dè¡¨ç¤ºå¯¹(xi*ynxi)æ±‚å¯¼
+            dhnx=xi*hnx(n-1)-n*hnx(n)               ! dè¡¨ç¤ºå¯¹(xi*hnxi)æ±‚å¯¼
+	      djnz=xo*jnz(n-1)-n*jnz(n)               ! dè¡¨ç¤ºå¯¹(xo*jnxo)æ±‚å¯¼
+	      dynz=xo*ynz(n-1)-n*ynz(n)               ! dè¡¨ç¤ºå¯¹(xo*ynxo)æ±‚å¯¼
+            dhnz=xo*hnz(n-1)-n*hnz(n)               ! dè¡¨ç¤ºå¯¹(xo*hnxo)æ±‚å¯¼
 	      tns1=tns(n)
 	      dns1=dns(n)
 	tns(n)=-(m(nk+1)*m(nk+1)*jnz(n)*(djnx+tns1*dynx)
@@ -53,7 +53,7 @@
 	bn(:)=0
 	xi=x(nlayer)*m(nlayer)
 	xo=x(nlayer)*m(nlayer+1)
-	n=nmax !besselº¯Êıµ÷ÓÃ¹æ·¶£¬µÚÒ»¸ö²ÎÊı±ØĞëÓÃ±äÁ¿
+	n=nmax !besselå‡½æ•°è°ƒç”¨è§„èŒƒï¼Œç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»ç”¨å˜é‡
 	call c_bessel(n,nmax,jnx,xi)
 	n=nmax
 	call c_newman(n,nmax,ynx,xi)
@@ -68,12 +68,12 @@
 	   hnz(n)=jnz(n)+cc*ynz(n)
 	end do
 	do n=1,nmax,1
-	   djnx=xi*jnx(n-1)-n*jnx(n)               ! d±íÊ¾¶Ô(xi*jnxi)Çóµ¼
-	   dynx=xi*ynx(n-1)-n*ynx(n)               ! d±íÊ¾¶Ô(xi*ynxi)Çóµ¼
-         dhnx=xi*hnx(n-1)-n*hnx(n)               ! d±íÊ¾¶Ô(xi*hnxi)Çóµ¼
-	   djnz=xo*jnz(n-1)-n*jnz(n)               ! d±íÊ¾¶Ô(xo*jnxo)Çóµ¼
-	   dynz=xo*ynz(n-1)-n*ynz(n)               ! d±íÊ¾¶Ô(xo*ynxo)Çóµ¼
-         dhnz=xo*hnz(n-1)-n*hnz(n)               ! d±íÊ¾¶Ô(xo*hnxo)Çóµ¼
+	   djnx=xi*jnx(n-1)-n*jnx(n)               ! dè¡¨ç¤ºå¯¹(xi*jnxi)æ±‚å¯¼
+	   dynx=xi*ynx(n-1)-n*ynx(n)               ! dè¡¨ç¤ºå¯¹(xi*ynxi)æ±‚å¯¼
+         dhnx=xi*hnx(n-1)-n*hnx(n)               ! dè¡¨ç¤ºå¯¹(xi*hnxi)æ±‚å¯¼
+	   djnz=xo*jnz(n-1)-n*jnz(n)               ! dè¡¨ç¤ºå¯¹(xo*jnxo)æ±‚å¯¼
+	   dynz=xo*ynz(n-1)-n*ynz(n)               ! dè¡¨ç¤ºå¯¹(xo*ynxo)æ±‚å¯¼
+         dhnz=xo*hnz(n-1)-n*hnz(n)               ! dè¡¨ç¤ºå¯¹(xo*hnxo)æ±‚å¯¼
 	   tns1=tns(n)
 	   dns1=dns(n)
 	an(n)=-(m(nlayer+1)*m(nlayer+1)*jnz(n)*(djnx+tns1*dynx)

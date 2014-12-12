@@ -2,15 +2,15 @@
 c ...................................................................................
 c ...................................................................................
 	implicit none
-	integer, intent(in):: nlayer	!Çò¿ÇµÄ²ãÊı£¬Ö»ÄÜÔÚµ÷ÓÃMie_effÊ±
-					!¶ÁÈë£¬ÔÚÖ´ĞĞMie_eff¹ı³ÌÖĞ²»¿É¸Ä±ä
+	integer, intent(in):: nlayer	!çƒå£³çš„å±‚æ•°ï¼Œåªèƒ½åœ¨è°ƒç”¨Mie_effæ—¶
+					!è¯»å…¥ï¼Œåœ¨æ‰§è¡ŒMie_effè¿‡ç¨‹ä¸­ä¸å¯æ”¹å˜
 	integer kstep,kn
 	double precision Lambda,kstart,kint,Qext,Qscat,Qabs
-	double precision r0(nlayer)		!¸÷²ãÇò¿ÇµÄÍâ¾¶
+	double precision r0(nlayer)		!å„å±‚çƒå£³çš„å¤–å¾„
 	double precision Cw, PE
-	complex*16 :: m(nlayer+1)		!¸÷¸öÇøÓòµÄÕÛÉäÂÊ
+	complex*16 :: m(nlayer+1)		!å„ä¸ªåŒºåŸŸçš„æŠ˜å°„ç‡
 	integer i,j, INFO
-	integer, allocatable :: IPIV(:)		!¿É±ä´óĞ¡µÄÊı×éIPIV?
+	integer, allocatable :: IPIV(:)		!å¯å˜å¤§å°çš„æ•°ç»„IPIV?
 	real*4 :: executetime(2),clocktime,etime
 
 	Cw=8.0655D5	
@@ -18,9 +18,9 @@ c ..............................................................................
 	!r0(2)=7.5d-9				!radius of silica shell, m
 	!r0(3)=10.0d-9				!radius of nanoparticle, m
       	print*,r0
-	kstart=2.00d-7				!³õÊ¼²¨³¤200nm
-	kint=1.0d-9				!²½³¤1nm
-	kstep=601				!É¨601¸ö²¨³¤£¬¼´Ëãµ½800nm
+	kstart=2.00d-7				!åˆå§‹æ³¢é•¿200nm
+	kint=1.0d-9				!æ­¥é•¿1nm
+	kstep=601				!æ‰«601ä¸ªæ³¢é•¿ï¼Œå³ç®—åˆ°800nm
 
 	open(20,file='Mie_sphere.csv')
 	write(20,*) 'wavelength,Qext,Qscat,Qabs,'
@@ -93,7 +93,7 @@ c
 c    
 c ...................................................................................
 	implicit none
-      integer nmax               !Êµ¼Ê½Ø¶ÏµÄ½×Êı
+      integer nmax               !å®é™…æˆªæ–­çš„é˜¶æ•°
 	integer nk, nlayer              
       double precision x(nlayer),temp1, Lambda, r0(nlayer),pi
 	complex*16 m(nlayer+1),cc
@@ -108,7 +108,7 @@ c ..............................................................................
 	an=0
 	bn=0
 
-	call aceh(nlayer,nmax,x,m,an,bn)  !¼ÆËãµ¥ÇòµÄÉ¢Éä³¡Õ¹¿ªÏµÊıan/bn
+	call aceh(nlayer,nmax,x,m,an,bn)  !è®¡ç®—å•çƒçš„æ•£å°„åœºå±•å¼€ç³»æ•°an/bn
 
 	Qext=0
 	Qscat=0
