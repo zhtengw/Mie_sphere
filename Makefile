@@ -22,7 +22,7 @@ ${DIR_OBJ}/%.o:${DIR_SRC}/%.for
 	$(FC) $(FCFLAGS) -c  $< -o $@
 .PHONY:clean
 clean:
-	find ${DIR_OBJ} -name *.o *.mod -exec rm -rf {}
+	find ${DIR_OBJ} -name *.o -exec rm -rf {} +
 
 buildrepo:
 	mkdir -p ${DIR_BUILD} ${DIR_BIN} ${DIR_OBJ}
