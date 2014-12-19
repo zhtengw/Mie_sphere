@@ -8,8 +8,8 @@
 	open(10, file=filename, status='old')
 
 	do while(.true.)
-	lines=lines + 1
 	read(10,*,end=100) buffer
+	lines=lines + 1
 c	
 c	It's different for gfortran compiler, 
 c	if use gfortran newer than 4.9,
