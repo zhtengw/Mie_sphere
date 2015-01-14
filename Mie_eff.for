@@ -20,10 +20,12 @@ c ..............................................................................
       	print*,r0
 	kstart=2.00d-7				!初始波长200nm
 	kint=1.0d-9				!步长1nm
-	kstep=601				!扫601个波长，即算到800nm
+	kstep=2001				!扫601个波长，即算到800nm
 
 	open(20,file='Mie_sphere.csv')
-	write(20,*) 'wavelength,Qext,Qscat,Qabs,'
+c	char(9)是ascii码横向制表符
+	write(20,*) 'wavelength',char(9),'Qext'
+     &  ,char(9),'Qscat',char(9),'Qabs'
 
 	do kn=1,kstep
 	Lambda=kstart+(kn-1)*kint		!wavelength, m
@@ -50,8 +52,9 @@ c B. Khlebtsov et. al, Nanotechnology 17, 5167(2006)
 c .........................................................................
 	call GetQeffs(Lambda, nlayer, m, r0, Qext, Qscat, Qabs)	
 	
-	write(20,100) Lambda,Qext,Qscat,Qabs
-100	format(ES12.5,',',ES12.5,','ES12.5,','ES12.5,',')
+c	输出文件的波长以nm为单位，各个量以制表符分割
+	write(20,100) Lambda*1.0d9,char(9),Qext,char(9),Qscat,char(9),Qabs
+100	format(ES12.5,a,ES12.5,a,ES12.5,a,ES12.5)
 	end do
 
 	return
