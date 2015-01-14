@@ -20,7 +20,7 @@ c ..............................................................................
       	print*,r0
 	kstart=2.00d-7				!初始波长200nm
 	kint=1.0d-9				!步长1nm
-	kstep=2001				!扫601个波长，即算到800nm
+	kstep=1001				!扫1001个波长，即算到1200nm
 
 	open(20,file='Mie_sphere.csv')
 c	char(9)是ascii码横向制表符
@@ -33,19 +33,12 @@ c ...................................................................
 c refractive index of silica core
 c ...................................................................
 
-	m(1)=2.5				!refractive index of CdSe core
-	m(2)=1.53
-
-!	m(2)=1.44851+3171.95/((lambda*1.0D9)**2)
-!     $+3.516*1.0D7/((lambda*1.0D9)**4)		!refractive index of Silica
-!	m(2)=1.32334+3479.0/((lambda*1.0D9)**2)	
-!     $-5.111*1.0D7/((lambda*1.0D9)**4) 		!refractive index of water
 	PE=1/(Cw*Lambda)
-	call getnk(PE,m(3))			!refractive index of Au
+	call getnk(PE,m(1))			!refractive index of Au
 c .........................................................................
 c When using getnk, copy nk(gold).txt or nk(silver).txt to nk.txt.  
 c .........................................................................
-	m(4)=1					!refractive index of surrounding medium (air)
+	m(2)=1					!refractive index of surrounding medium (air)
 c .........................................................................
 c the formula of refractive indices of silica and water were both given in 
 c B. Khlebtsov et. al, Nanotechnology 17, 5167(2006)
