@@ -1,0 +1,27 @@
+ 
+main ---- 主程序，读入命令行参数(球壳层数、各层厚度)，调用Mie_eff
+	|
+	|
+	---- Mie_eff ---- 定义扫频范围、步长、各层材料折射率（需插值拟合的折射率散点数据调用getnk处理），将数据传给GetQeffs计算消光谱
+			 |
+			 |
+			 ---- getnk ---- 
+			 |	       |
+			 |	       |
+			 |	       ----
+			 |
+			 |
+			 ---- GetQeffs ---- 调用aceh计算展开系数an和bn，进而计算多层球壳的消光、散射和吸收因子
+					    |
+					    |
+					    ---- aceh ---- 计算截断的多层展开系数an和bn
+							 |
+							 |
+							 ----
+			    
+
+文件与各子程序
+main.for	 -> main
+Mie_eff.for	 -> Mie_eff, GetQeffs
+getnk.for	 -> getnk, PCHIP
+aceh.for	 -> aceh

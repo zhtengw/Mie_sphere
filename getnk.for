@@ -1,4 +1,4 @@
-      subroutine getnk(PE,nk)
+	subroutine getnk(PE,nk)
 	implicit none
 	integer :: i,lines
 	double precision, allocatable :: nn(:),kk(:),PEI(:)
@@ -6,9 +6,8 @@
 	complex*16 nk
 	
         call getfilelines('nk.txt', lines)
-        allocate(nn(lines))
-        allocate(kk(lines))
-        allocate(PEI(lines))
+        allocate(nn(lines),kk(lines),PEI(lines))
+        
 	open(50,file='nk.txt',status='old')
 	do i=1,lines
 	read(50,*) PEI(i),nn(i),kk(i)
@@ -18,6 +17,9 @@ c	DPCHIM(N, X, F, D, 1, IERR) 要求数组X必须是从小到大排列的，所�
 	CALL PCHIP(lines,PEI,nn,1,PE,nninterp)
 	CALL PCHIP(lines,PEI,kk,1,PE,kkinterp)
 	nk=cmplx(nninterp,kkinterp)
+	
+	deallocate(nn(lines),kk(lines),PEI(lines))
+
 	return
 	end
 
