@@ -5,8 +5,8 @@
 	double precision PE,nninterp,kkinterp
 	complex*16 nk
 	
-        call getfilelines('nk.txt', lines)
-        allocate(nn(lines),kk(lines),PEI(lines))
+	call getfilelines('nk.txt', lines)
+	allocate(nn(lines),kk(lines),PEI(lines))
         
 	open(50,file='nk.txt',status='old')
 	do i=1,lines
@@ -18,7 +18,7 @@ c	DPCHIM(N, X, F, D, 1, IERR) 要求数组X必须是从小到大排列的，所�
 	CALL PCHIP(lines,PEI,kk,1,PE,kkinterp)
 	nk=cmplx(nninterp,kkinterp)
 	
-	deallocate(nn(lines),kk(lines),PEI(lines))
+	deallocate(nn,kk,PEI)
 
 	return
 	end

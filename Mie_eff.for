@@ -34,7 +34,8 @@ c refractive index of silica core
 c ...................................................................
 
 	m(1)=2.5				!refractive index of CdSe core
-	m(2)=1.53
+	m(2)=1.32334+3479.0/((lambda*1.0D9)**2)	
+     $-5.111*1.0D7/((lambda*1.0D9)**4) 
 
 !	m(2)=1.44851+3171.95/((lambda*1.0D9)**2)
 !     $+3.516*1.0D7/((lambda*1.0D9)**4)		!refractive index of Silica
@@ -45,7 +46,9 @@ c ...................................................................
 c .........................................................................
 c When using getnk, copy nk(gold).txt or nk(silver).txt to nk.txt.  
 c .........................................................................
-	m(4)=1					!refractive index of surrounding medium (air)
+c	m(4)=1					!refractive index of surrounding medium (air)
+	m(4)=1.32334+3479.0/((Lambda*1.0D9)**2)	
+     $-5.111*1.0D7/((Lambda*1.0D9)**4) 
 c .........................................................................
 c the formula of refractive indices of silica and water were both given in 
 c B. Khlebtsov et. al, Nanotechnology 17, 5167(2006)

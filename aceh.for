@@ -63,7 +63,7 @@ c ..............................................................................
 	      tns(n)=tns(n)/(m(nk+1)*m(nk+1)*ynz(n)*(djnx+tns1*dynx)
      $-m(nk)*m(nk)*dynz*(jnx(n)+tns1*ynx(n)))
 	      dns(n)=-(jnz(n)*(djnx+dns1*dynx)-djnz*(jnx(n)+dns1*ynx(n)))
-	      dns(n)=dns(n)/(ynz(n)*(djnx+dns1*dynx)-dynz*(jnx(n)+dns1*ynx(n)))
+	dns(n)=dns(n)/(ynz(n)*(djnx+dns1*dynx)-dynz*(jnx(n)+dns1*ynx(n)))
 	   end do
 
 	end do

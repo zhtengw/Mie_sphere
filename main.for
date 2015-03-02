@@ -58,7 +58,7 @@ c	第i个半径由第i+1个参数提供
 	
 	call Mie_eff(nlayer,r0)
 	
-	deallocate(r0(nlayer))
+	deallocate(r0)
 	
 	clocktime=etime(executetime)
 	write(*,*) executetime(1)
