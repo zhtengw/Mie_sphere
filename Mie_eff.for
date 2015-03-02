@@ -18,9 +18,9 @@ c ..............................................................................
 	!r0(2)=7.5d-9				!radius of silica shell, m
 	!r0(3)=10.0d-9				!radius of nanoparticle, m
       	print*,r0
-	kstart=2.00d-7				!初始波长200nm
-	kint=1.0d-9				!步长1nm
-	kstep=1001				!扫1001个波长，即算到1200nm
+	kstart=2.75d-7				!初始波长275nm
+	kint=0.2d-9				!步长0.2nm
+	kstep=1101				!扫1101个波长，即算到495nm
 
 	open(20,file='Mie_sphere.csv')
 c	char(9)是ascii码横向制表符
@@ -38,7 +38,9 @@ c ...................................................................
 c .........................................................................
 c When using getnk, copy nk(gold).txt or nk(silver).txt to nk.txt.  
 c .........................................................................
-	m(2)=1					!refractive index of surrounding medium (air)
+	m(2)=1.32334+3479.0/((Lambda*1.0D9)**2)	
+     $-5.111*1.0D7/((Lambda*1.0D9)**4) 		!refractive index of water
+c	m(2)=1					!refractive index of surrounding medium (air)
 c .........................................................................
 c the formula of refractive indices of silica and water were both given in 
 c B. Khlebtsov et. al, Nanotechnology 17, 5167(2006)
