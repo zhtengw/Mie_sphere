@@ -33,12 +33,10 @@ c ...................................................................
 c refractive index of silica core
 c ...................................................................
 
-	m(1)=2.5				!refractive index of CdSe core
-	m(2)=1.32334+3479.0/((lambda*1.0D9)**2)	
-     $-5.111*1.0D7/((lambda*1.0D9)**4) 
-
-!	m(2)=1.44851+3171.95/((lambda*1.0D9)**2)
-!     $+3.516*1.0D7/((lambda*1.0D9)**4)		!refractive index of Silica
+	m(1)=10				!refractive index of CdSe core
+!	m(2)=1.53
+	m(2)=1.44851+3171.95/((lambda*1.0D9)**2)
+     $+3.516*1.0D7/((lambda*1.0D9)**4)		!refractive index of Silica
 !	m(2)=1.32334+3479.0/((lambda*1.0D9)**2)	
 !     $-5.111*1.0D7/((lambda*1.0D9)**4) 		!refractive index of water
 	PE=1/(Cw*Lambda)
